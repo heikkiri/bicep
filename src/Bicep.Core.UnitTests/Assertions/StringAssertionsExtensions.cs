@@ -64,8 +64,8 @@ namespace Bicep.Core.UnitTests.Assertions
 
         public static AndConstraint<StringAssertions> BeEquivalentToIgnoringNewlines(this StringAssertions instance, string expected, string because = "", params object[] becauseArgs)
         {
-            var normalizedActual = Regex.Replace(instance.Subject, "\r?\n", "\n");
-            var normalizedExpected = Regex.Replace(expected, "\r?\n", "\n");
+            var normalizedActual = StringUtils.ReplaceNewlines(instance.Subject);
+            var normalizedExpected = StringUtils.ReplaceNewlines(expected);
 
             normalizedActual.Should().BeEquivalentTo(normalizedExpected, because, becauseArgs);
 
